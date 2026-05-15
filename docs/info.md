@@ -1,4 +1,4 @@
-## Bio Sinusoidal Signal Generator (Bio_SSG)
+*Bio Sinusoidal Signal Generator (Bio_SSG)*
 
 ## How it works
 
