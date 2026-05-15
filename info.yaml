@@ -55,9 +55,9 @@ pinout:
   uio[7]: ""
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
-  ua[0]: "out1"
-  ua[1]: "out2"
-  ua[2]: "vdd_dac"
+  ua[0]: "vdd_dac"
+  ua[1]: "out1"
+  ua[2]: "out2"
   ua[3]: "ref_kokko"
   ua[4]: "ref1"
   ua[5]: "ref2"
