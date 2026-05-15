@@ -5,7 +5,7 @@ project:
   discord:      "_kokko_7"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "This a test"      # One line description of what your project does
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     2560000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "2x2"          # Valid values for analog projects: 1x2, 2x2
@@ -25,8 +25,8 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "clk"
-  ui[1]: "reset"
+  ui[0]: ""
+  ui[1]: ""
   ui[2]: ""
   ui[3]: ""
   ui[4]: ""
