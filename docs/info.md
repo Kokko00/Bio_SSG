@@ -1,25 +1,32 @@
-*Bio Sinusoidal Signal Generator (Bio_SSG)*
+# Bio Sinusoidal Signal Generator (Bio_SSG)
+
+![Simulation Results](images/simulation_graph.png)
+*Top: The stepped pseudo-differential signal from the Differential DAC. Bottom: The smoothed, continuous-time sinusoidal signal outputted by the OTAs.*
+
+## Overview
+The Bio Sinusoidal Signal Generator (Bio_SSG) is a fully synthesizable, mixed-signal, ultra-low-voltage (ULV) sine wave generator designed primarily with digital standard cells. The project generates a precise analog sinusoidal signal at approximately ~20-25 kHz using a combination of a Direct Digital Synthesizer (DDS), a standard-cell-based differential DAC, a continuous-time low-pass filter, and an ultra-low-voltage Operational Transconductance Amplifier (OTA). 
+
+This design demonstrates the viability of utilizing automated digital logic design tools to create high-performance analog and mixed-signal functional blocks.
 
 ## How it works
+The signal path is divided into three main stages:
 
-This project is a mixed-signal System-on-Chip (SoC) that generates, converts, and filters a sine wave using a fully synthesizable, standard-cell-based analog design approach. The entire signal chain is built to demonstrate how standard digital logic cells (like inverters) can be utilized to create high-performance analog circuitry.
-
-The signal chain consists of the following main blocks:
-
-Direct Digital Synthesizer (DDS): A digital block that generates a sine wave using a 128-value internal Look-Up Table (LUT). It uses a counter to step through the LUT and outputs the digital representation of the wave.
-
-Differential Buffer & DAC: The digital values are passed through a buffer network that decodes the signals into thermometric and binary formats. These drive a differential Digital-to-Analog Converter (DAC), which converts the digital sine wave into a differential analog signal (out_1 and out_2).
-
-Continuous-Time Low-Pass Filter (lpf_2ord): The analog signal is fed into an inverter-based continuous-time low-pass filter. Relying on the transconductance of standard-cell inverters (similar to a Nauta transconductor), this stage smooths the DAC output, removing high-frequency quantization noise.
-
-Dual Inverter-Based OTA (DUALKOKKO): The filtered signals are finally buffered/amplified by two inverter-based Operational Transconductance Amplifiers (OTAs). To ensure robustness against process, voltage, and temperature (PVT) variations and to provide high common-mode rejection, the OTAs feature a local feedback loop utilizing an auxiliary error amplifier.
-
-By utilizing standard digital cells for the analog blocks, this design significantly reduces layout time and footprint while maintaining excellent performance, making it highly suitable for ultra-low-voltage IoT applications.
+1. **Direct Digital Synthesis**: A 7-bit digital counter steps through a 128-point Lookup Table (LUT) populated with the digital representations of a sine wave. Driven by a 2.56 MHz clock, the counter continuously cycles through the LUT to establish the base frequency of the sine wave (approx. 20-25 kHz).
+2. **Differential Buffer Block & DAC**: The digital values from the DDS are passed into a differential Digital-to-Analog Converter (DAC) constructed entirely using arrays of standard digital buffers. This block outputs a pseudo-differential stepped sinusoidal analog voltage.
+3. **2nd-Order Low-Pass Filter**: To smooth the stepped DAC output, the signal passes through a fully integrated 2nd-order continuous-time low-pass filter. Taking inspiration from modern standard-cell-based analog flows, the filter replaces traditional passive transconductors with logic inverters biased in their linear regions. **All filtering capacitors are fully integrated on-chip.**
+4. **Ultra-Low-Voltage OTAs**: The filtered signal is buffered and amplified by a pair of standard-cell-based OTAs operating at a `VDDA` of 1.2V. These OTAs utilize a novel differential-to-single-ended converter topology with an auxiliary standard-cell-based error amplifier. This local feedback loop significantly improves the Common-Mode Rejection Ratio (CMRR) and provides high robustness against Process, Voltage, and Temperature (PVT) variations.
 
 ## How to test
+To properly test the Bio_SSG, both the digital and analog domains must be carefully configured with specific voltage references.
 
-Explain how to use your project
+1. **Power Supply & References**:
+   * Supply the standard digital logic power (1.8V) to the digital domain.
+   * Provide **1.2V** to the main analog power domain (`VDDA`).
+   * Provide **0.65V** to the DAC power pin (`ua[0]: vdd_dac`).
+   * Provide an analog ground / reference voltage of **0.6V** (VDD/2) to the reference pins (`ua[1]: ref_kokko`, `ua[2]: ref2`, and `ua[3]: ref1`).
+2. **Control Signals**: Hold the reset pin (`rst_n`) low to reset the DDS counter, then pull it high alongside the enable pin (`ena`) to start signal generation.
+3. **Observation**: Use an oscilloscope to probe the analog differential output pins (`ua[5]: out1` and `ua[4]: out2`). You should observe smooth, continuous-time sinusoidal waves at ~25 kHz. 
 
 ## External hardware
-
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+*   **Oscilloscope**: A standard oscilloscope to verify the analog differential sinusoidal outputs on `ua[4]` and `ua[5]`.
+*   **Precision Power Supplies / LDOs**: Clean external voltage sources to generate the specific analog voltages required: `1.2V` (VDDA), `0.65V` (DAC), and `0.6V` (Analog References). No external capacitors are required as they are fully integrated on the die.
