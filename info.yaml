@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
   title:        "Bio-SSG"      # Project title
-  author:       "Jose Abel, Alvaro Soto"      # Your name
-  discord:      "_kokko_7"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "This a test"      # One line description of what your project does
+  author:       "Jose Abel Rodriguez Soto, Alvaro Gonzalo Soto Renteria"      # Your name
+  discord:      "_kokko_7, abel158354"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Sinusoidal Signal Generator for Bio-Application"      # One line description of what your project does
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
   clock_hz:     2560000       # Clock frequency in Hz (or 0 if not applicable)
 
