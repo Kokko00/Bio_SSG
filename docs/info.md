@@ -1,8 +1,5 @@
 # Bio Sinusoidal Signal Generator (Bio_SSG)
 
-![Simulation Results](images/simulation_graph.png)
-*Top: The stepped pseudo-differential signal from the Differential DAC. Bottom: The smoothed, continuous-time sinusoidal signal outputted by the OTAs.*
-
 ## Overview
 The Bio Sinusoidal Signal Generator (Bio_SSG) is a fully synthesizable, mixed-signal, ultra-low-voltage (ULV) sine wave generator designed primarily with digital standard cells. The project generates a precise analog sinusoidal signal at approximately ~20-25 kHz using a combination of a Direct Digital Synthesizer (DDS), a standard-cell-based differential DAC, a continuous-time low-pass filter, and an ultra-low-voltage Operational Transconductance Amplifier (OTA). 
 
