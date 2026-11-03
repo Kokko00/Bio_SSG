@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bio-SSG · Chip Design Club</title>
+<meta name="description" content="Bio-SSG: generador de señal senoidal integrado para aplicaciones biomédicas. Tapeout en SKY130.">
+<meta name="theme-color" content="#05070d">
+<link rel="canonical" href="https://romeruu-dev.github.io/chip-design-club/bio-ssg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Chip Design Club · UABC">
+<meta property="og:locale" content="es_MX">
+<meta property="og:title" content="Bio-SSG · Chip Design Club">
+<meta property="og:description" content="Bio-SSG: generador de señal senoidal integrado para aplicaciones biomédicas. Tapeout en SKY130.">
+<meta property="og:url" content="https://romeruu-dev.github.io/chip-design-club/bio-ssg">
+<meta property="og:image" content="https://romeruu-dev.github.io/Bio_SSG/assets/og/bio-ssg_og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Bio-SSG", "description": "Generador de señal senoidal integrado para aplicaciones biomédicas, fabricado en SKY130 con Tiny Tapeout.", "image": "https://romeruu-dev.github.io/chip-design-club/assets/instagram/bio-ssg_01.png", "url": "https://romeruu-dev.github.io/chip-design-club/bio-ssg", "inLanguage": "es-MX", "author": [{"@type": "Person", "name": "José Abel Rodríguez Soto"}, {"@type": "Person", "name": "Álvaro Gonzalo Soto Rentería"}], "publisher": {"@type": "Organization", "name": "Chip Design Club · UABC"}}</script>
+<link rel="preload" href="assets/fonts/Inter-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="assets/fonts/Inter-ExtraBold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="assets/css/story.css?v=20261024">
+</head>
+<body data-post="bio-ssg">
+<div class="top">
+  <div class="bars" aria-hidden="true"></div>
+  <div class="meta"><a href="https://romeruu-dev.github.io/chip-design-club/">← Inicio</a><span><span class="u">TTSKY26a</span> · SKY130</span></div>
+</div>
+<main class="deck">
+
+<!-- 1 · portada -->
+<section class="scene">
+  <div class="inner">
+    <div class="kicker r">Proyecto de tapeout · Señal mixta</div>
+    <h1 class="r" style="--i:1">Bio-SSG</h1>
+    <p class="r" style="--i:2;font-size:20px">Un chip que genera una <b class="acc">onda senoidal</b> para aplicaciones biomédicas.</p>
+    <div class="plate fit r" data-parallax="24" style="--i:3;margin-top:22px;--ph:40dvh">
+      <div class="stage">
+        <img src="assets/img/bio-ssg/layout.webp" alt="Layout completo de Bio-SSG" width="1800" height="1213">
+        <div class="scalebar" style="width:29.87%"><span>100 µm</span><div class="bar"></div></div>
+      </div>
+    </div>
+    <div class="row r" style="--i:4">
+      <div class="dim">Layout completo · KLayout</div>
+      <div class="dim" style="text-align:right">334.9 × 225.8 <span class="u">µm</span> · 2×2 tiles</div>
+    </div>
+    <div class="chips r" style="--i:5"><span class="chip on">SKY130 · 130 nm</span><span class="chip">Analógico con celdas estándar</span><span class="chip">1.2 V</span></div>
+  </div>
+</section>
+
+<!-- 2 · equipo -->
+<section class="scene">
+  <div class="inner">
+    <div class="kicker r">El equipo</div>
+    <h2 class="r" style="--i:1">Quiénes lo llevaron<br>hasta el silicio</h2>
+    <div class="person r" style="--i:2"><div class="avatar">JR</div><div><div class="role">Autor</div><div class="name">José Abel<br>Rodríguez Soto</div></div></div>
+    <div class="person r" style="--i:3"><div class="avatar">ÁS</div><div><div class="role">Autor</div><div class="name">Álvaro Gonzalo<br>Soto Rentería</div></div></div>
+    <p class="r" style="--i:4;margin-top:28px">Su diseño fue enviado a fabricación (<b>tapeout</b>) con <b>Tiny Tapeout</b>, en el proceso de 130 nm <b>SKY130</b> de SkyWater.</p>
+    <div class="dim r" style="--i:5;margin-top:18px">UABC · Facultad de Ingeniería Mexicali</div>
+  </div>
+</section>
+
+<!-- 3 · la onda se transforma conforme bajas -->
+<section class="seq" data-seq="wave" style="--steps:3">
+  <div class="sticky"><div class="inner">
+    <div class="kicker">¿Qué hace?</div>
+    <h2>Así nace la onda,<br>mientras bajas</h2>
+    <div class="screen"><svg viewBox="0 0 600 210" role="img" aria-label="La señal pasa de muestras discretas a una onda senoidal diferencial"></svg></div>
+    <div class="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="step-label">
+      <div class="on"><div class="t">01 · Síntesis digital directa</div><div class="d">Un contador de 7 bits recorre una tabla con 128 muestras de una onda seno.</div></div>
+      <div><div class="t">02 · Convertidor digital-analógico</div><div class="d">Arreglos de buffers convierten cada número en un nivel de voltaje: aparecen los escalones.</div></div>
+      <div><div class="t">03 · Filtro pasa-bajas de 2.º orden</div><div class="d">Inversores polarizados en su región lineal suavizan los escalones.</div></div>
+      <div><div class="t">04 · Amplificadores OTA a 1.2 V</div><div class="d">La señal sale en forma diferencial: dos ondas opuestas.</div></div>
+    </div>
+    <div class="dim" style="margin-top:14px">f<sub>out</sub> = f<sub>clk</sub> / 128 = 2.56 MHz / 128 = <span class="acc">20 kHz</span></div>
+  </div></div>
+</section>
+
+<!-- 4 · el layout se acerca a cada bloque -->
+<section class="seq wide" data-seq="zoom" style="--steps:4" data-blocks='[{"l": 62.53, "t": 6.3, "w": 29.93, "h": 39.65, "z": 2.2}, {"l": 62.82, "t": 51.58, "w": 29.3, "h": 42.98, "z": 2.2}, {"l": 7.54, "t": 4.43, "w": 36.17, "h": 52.62, "z": 2.0}, {"l": 9.85, "t": 60.13, "w": 34.49, "h": 39.2, "z": 2.0}]'>
+  <div class="sticky"><div class="inner">
+    <div class="kicker">Anatomía del chip</div>
+    <h2>Un recorrido por<br>0.076 mm² de silicio</h2>
+    <div class="plate seq-plate fit" style="--ph:44dvh;margin-top:18px">
+      <div class="stage">
+        <img src="assets/img/bio-ssg/layout.webp" alt="Layout de Bio-SSG" width="1800" height="1213">
+        <div class="scalebar" style="width:29.87%"><span>100 µm</span><div class="bar"></div></div>
+        <div class="marker"></div>
+      </div>
+    </div>
+    <div class="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="step-label">
+      <div class="on"><div class="t">El chip completo</div><div class="d">334.9 × 225.8 µm: más o menos el tamaño de un grano de sal.</div></div>
+      <div><div class="t">DDS · lógica digital</div><div class="d">Contador de 7 bits + tabla de 128 muestras. 370 celdas estándar.</div></div>
+      <div><div class="t">DAC diferencial</div><div class="d">Convierte cada número en voltaje usando sólo buffers e inversores. 144 celdas.</div></div>
+      <div><div class="t">Filtro + OTA</div><div class="d">Inversores que trabajan como transconductores, y los amplificadores de salida. 134 celdas.</div></div>
+      <div><div class="t">Capacitores MIM</div><div class="d">Los capacitores del filtro, integrados 100 % en el chip.</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 5 · idea clave -->
+<section class="scene">
+  <div class="inner">
+    <div class="kicker r">La idea clave</div>
+    <h2 class="r" style="--i:1">Analógico, hecho<br>con piezas digitales</h2>
+    <div class="plate fit r" data-parallax="18" style="--i:2;margin-top:18px;--ph:30dvh"><img src="assets/img/bio-ssg/zoom.webp" alt="Acercamiento a los inversores del filtro" width="1400" height="934" loading="lazy"></div>
+    <div class="dim r" style="--i:3;margin-top:10px">Acercamiento 30 × 20 <span class="u">µm</span> · inversores del filtro (<span class="u">sky130_fd_sc_hd__inv_16</span>)</div>
+    <p class="r" style="--i:4">Normalmente un circuito analógico se dibuja transistor por transistor. Aquí se reutilizaron <b>celdas estándar digitales</b> como bloques analógicos.</p>
+    <div class="stats r" style="--i:5">
+      <div class="stat"><div class="v" data-count="648">0</div><div class="k">celdas estándar</div></div>
+      <div class="stat"><div class="v" data-count="4">0</div><div class="k">capacitores MIM</div></div>
+      <div class="stat"><div class="v" data-count="0">0</div><div class="k">capacitores externos</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · ficha técnica -->
+<section class="scene">
+  <div class="inner">
+    <div class="kicker r">Ficha técnica</div>
+    <h2 class="r" style="--i:1">Bio-SSG en datos</h2>
+    <table class="r" style="--i:2">
+      <tr><td class="k">Proceso</td><td>SkyWater SKY130 · 130 nm</td></tr>
+      <tr><td class="k">Programa</td><td>Tiny Tapeout · shuttle TTSKY26a</td></tr>
+      <tr><td class="k">Área</td><td>334.9 × 225.8 µm · 2×2 tiles (≈ 0.076 mm²)</td></tr>
+      <tr><td class="k">Reloj</td><td>2.56 MHz · contador de 7 bits · LUT de 128 muestras</td></tr>
+      <tr><td class="k">Salida</td><td>Senoidal diferencial · 20 kHz nominal · <span class="mono">ua[5]</span>, <span class="mono">ua[4]</span></td></tr>
+      <tr><td class="k">Voltajes</td><td>1.2 V analógico · 0.65 V DAC · 0.6 V referencia</td></tr>
+      <tr><td class="k">Celdas</td><td>648 <span class="mono">sky130_fd_sc_hd</span> + 4 capacitores MIM</td></tr>
+    </table>
+    <a class="btn solid r" style="--i:3" href="https://github.com/Kokko00/Bio_SSG" rel="noopener">Ver repositorio</a>
+  </div>
+</section>
+
+<!-- 7 · versión para Instagram -->
+<section class="scene wide">
+  <div class="inner">
+    <div class="kicker r">También en Instagram</div>
+    <h2 class="r" style="--i:1">Las 6 diapositivas</h2>
+    <p class="r" style="--i:2;font-size:15.5px">Mismo contenido en formato carrusel. Toca una para abrirla completa.</p>
+    <div class="r" style="--i:3"><div class="strip">
+      <a href="assets/instagram/bio-ssg_01.png" target="_blank" rel="noopener"><img src="assets/instagram/thumbs/bio-ssg_01.webp" alt="Diapositiva 1" loading="lazy" width="540" height="675"></a>
+      <a href="assets/instagram/bio-ssg_02.png" target="_blank" rel="noopener"><img src="assets/instagram/thumbs/bio-ssg_02.webp" alt="Diapositiva 2" loading="lazy" width="540" height="675"></a>
+      <a href="assets/instagram/bio-ssg_03.png" target="_blank" rel="noopener"><img src="assets/instagram/thumbs/bio-ssg_03.webp" alt="Diapositiva 3" loading="lazy" width="540" height="675"></a>
+      <a href="assets/instagram/bio-ssg_04.png" target="_blank" rel="noopener"><img src="assets/instagram/thumbs/bio-ssg_04.webp" alt="Diapositiva 4" loading="lazy" width="540" height="675"></a>
+      <a href="assets/instagram/bio-ssg_05.png" target="_blank" rel="noopener"><img src="assets/instagram/thumbs/bio-ssg_05.webp" alt="Diapositiva 5" loading="lazy" width="540" height="675"></a>
+      <a href="assets/instagram/bio-ssg_06.png" target="_blank" rel="noopener"><img src="assets/instagram/thumbs/bio-ssg_06.webp" alt="Diapositiva 6" loading="lazy" width="540" height="675"></a>
+    </div></div>
+    <a class="btn r" style="--i:4" href="/stdcell-ldo">Siguiente: STDCELL_LDO →</a>
+  </div>
+</section>
+
+</main>
+<div class="hint" aria-hidden="true"><span>Desliza hacia abajo</span><b>↓</b></div>
+<script src="assets/js/story.js"></script>
+</body>
+</html>
